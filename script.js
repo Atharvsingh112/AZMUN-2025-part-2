@@ -5,9 +5,13 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
         });
     });
 
@@ -24,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(section);
     });
 
-    // Over-the-top features
     // Parallax scrolling effect
     const parallaxElements = document.querySelectorAll('.parallax');
     if (parallaxElements.length) {
@@ -51,12 +54,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         typeWriter();
-    }
-
-    // Interactive Map (placeholder for actual implementation)
-    // This would typically require a separate library or service like Google Maps API
-    const mapSection = document.getElementById('map-section');
-    if (mapSection) {
-        mapSection.innerHTML = '<p>Interactive Map Feature Coming Soon!</p>';
     }
 });
